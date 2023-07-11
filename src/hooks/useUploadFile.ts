@@ -12,7 +12,6 @@ export const useUploadFile = (fileSrc: any, type: string) => {
   const { setDownload, download } = useStore();
   const { mutate, isSuccess } = useMutation(() => uploadFile({ file: fileSrc }), {
     onSuccess: (data) => {
-      console.log(data);
       // 데이터 성공 시 store에 저장 및 업데이트
       if (type === 'mediakit') {
         setDownload({ ...download, media_kit_file: data.data.upload_path });

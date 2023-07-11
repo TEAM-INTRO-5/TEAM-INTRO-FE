@@ -32,16 +32,19 @@ function CheckMark({ s1, s2 }: Sentences) {
 }
 
 export default function LandingPage() {
-  const { mutate: createIntroPageMutation } = useMutation(() => createIntroPage({ widget_type_list: [] }), {
-    onSuccess: (data) => {
-      console.log('success', data);
-      Router.push('/builder');
+  const { mutate: createIntroPageMutation } = useMutation(
+    () => createIntroPage({ widget_type_list: ['MISSIONANDVISION'] }),
+    {
+      onSuccess: (data) => {
+        console.log('success', data);
+        Router.push('/builder');
+      },
+      onError: (error) => {
+        console.log('error', error);
+        alert('회사 소개 페이지 생성에 실패했습니다.');
+      },
     },
-    onError: (error) => {
-      console.log('error', error);
-      alert('회사 소개 페이지 생성에 실패했습니다.');
-    },
-  });
+  );
 
   return (
     <div className="mx-auto flex flex-col items-center mt-[117px]">

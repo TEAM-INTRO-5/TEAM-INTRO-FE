@@ -9,6 +9,7 @@ import { set } from 'react-hook-form';
 import { useUpdateKeyVisual } from '@/hooks/useUpdateKeyVusial';
 import { useUpdateSite } from '@/hooks/useUploadSite';
 import { useUploadImage } from '@/hooks/useUploadImage';
+import Image from 'next/image';
 
 function Preview() {
   const { widgets, setToggle, keyVisual, uploadImage, setUploadImage, setBackground, setKeyVisual, setSloganDetail } =
@@ -17,7 +18,6 @@ function Preview() {
   const updateKeyVisualMutation = useUpdateKeyVisual({ widget_status: findWigetToggle?.toggle, ...keyVisual });
   const { mutate: uploadImageMutation, isSuccess } = useUploadImage(uploadImage, 'keyvisual');
 
-  console.log('keyVisual', keyVisual);
   useEffect(() => {
     if (isSuccess) {
       updateKeyVisualMutation();
@@ -27,10 +27,12 @@ function Preview() {
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 위젯 &#8739; 키비주얼/슬로건" />
       <div className="font-[700] text-[24px] mt-[16px] flex">
-        <img
+        <Image
           src="/keyvisual.png"
           alt="header/keyvisual logo img"
           className="w-[26px] h-[26px] mr-[4px] translate-y-1"
+          width={26}
+          height={26}
         />
         키 비주얼/슬로건
       </div>

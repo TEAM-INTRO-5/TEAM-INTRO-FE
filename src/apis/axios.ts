@@ -26,7 +26,6 @@ const getAxiosInstance = (option?: { multi?: boolean }) => {
     },
     (error: AxiosError) => {
       // 에러타입 지정
-      console.log(error);
       return Promise.reject(error);
     },
   );

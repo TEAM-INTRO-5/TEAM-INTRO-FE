@@ -3,6 +3,7 @@ import Color, { Palette } from 'color-thief-react';
 import ColorPicker from 'react-pick-color';
 import useStore from '@/store';
 import { PrimaryButton } from '@/components/common/button';
+import Image from 'next/image';
 
 export default function MainColor({ setIsColorPopup }: { setIsColorPopup: any }) {
   const [imgSrc, setImgSrc] = useState('');
@@ -71,7 +72,13 @@ export default function MainColor({ setIsColorPopup }: { setIsColorPopup: any })
         className="absolute top-[57px] right-[15px] w-[180px]"
       />
       <button onClick={() => setIsColorPopup(false)}>
-        <img src="/close.png" alt="close" className="w-[14px] h-[auto] absolute top-[14px] right-[13px]" />
+        <Image
+          src="/close.png"
+          alt="close"
+          className="w-[14px] h-[auto] absolute top-[14px] right-[13px]"
+          width={14}
+          height={14}
+        />
       </button>
       <div className="text-[12px] absolute bottom-[90px] left-[25px] w-[200px]">
         회사 로고는 &#91;대시보드&#8250;회사 정보 관리&#8250;기본 정보&#93;에서 설정 가능합니다

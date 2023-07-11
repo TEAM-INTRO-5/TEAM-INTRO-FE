@@ -13,15 +13,23 @@ import {
   TeamMember,
   History,
 } from '@/components/subdomain/Widget';
-import { useQuery } from '@tanstack/react-query';
+import { QueryClient, dehydrate, useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import useStore from '@/store';
 import { is } from 'date-fns/locale';
 import ErrorPage from '../404';
 import Loading from '../Loading';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import axios from 'axios';
 
-function Preview({ data, isLoading, isSuccess }: { data: any; isLoading: boolean; isSuccess: boolean }) {
+interface PreviewProps {
+  data: any;
+  isLoading: boolean;
+  isSuccess: boolean;
+}
+
+function Preview({ data, isLoading, isSuccess }: PreviewProps) {
   if (isLoading) return <Loading />;
   if (!isSuccess) return <ErrorPage />;
   const { widgets, theme, header_and_footer, company_info, site_info, intro_page_id } = data;
@@ -68,34 +76,90 @@ function Preview({ data, isLoading, isSuccess }: { data: any; isLoading: boolean
   );
 }
 
-function SubDomain() {
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [], // 빈 배열 또는 사전 정의된 동적 경로 배열
+    fallback: true, // fallback 값을 true로 설정하여 다른 경로들을 대체합니다.
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { id } = params as { id: string };
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['subdomain', id], () => postIntroPageUser({ sub_domain: id as string }));
+
+  // if (id) {
+  //   try {
+  //     const { data: subDomainData } = await postIntroPageUser({
+  //       sub_domain: id as string,
+  //     });
+
+  //     return {
+  //       props: {
+  //         subDomainData,
+  //         id,
+  //       },
+  //     };
+  //   } catch (error) {
+  //     console.error(error);
+  //     return {
+  //       props: {
+  //         subDomainData: null,
+  //         id,
+  //       },
+  //     };
+  //   }
+  // }
+
+  return {
+    props: {
+      // subDomainData: null,
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
+
+export default function Page() {
+  // if (subDomainData === null) {
+  //   return <ErrorPage />;
+  // }
+  // if (!subDomainData) {
+  //   return <Loading />;
+  // }
+  // return <div>success</div>;
   const router = useRouter();
-  if (router && router.query && router.query.id) {
-    const {
-      data: subDomainData,
-      isLoading,
-      isSuccess,
-    } = useQuery(
-      ['postIntroPageUser'],
-      () =>
-        postIntroPageUser({
-          sub_domain: router.query.id,
-        }).then((a) => {
-          return a.data;
-        }),
-      {
-        staleTime: 60000, // 60초 (1분)으로 설정된 캐시 유효 시간
-        cacheTime: 10000,
-        refetchOnWindowFocus: false, // 포커스가 다시 들어왔을 때 다시 불러올지 여부
-        retry: false, // 에러 발생 시 재시도 여부
-      },
-    );
-    return (
-      <div className="w-[1280px] mx-auto">
-        <Preview data={subDomainData} isLoading={isLoading} isSuccess={isSuccess} />
-      </div>
-    );
-  }
+  console.log(router.query.id);
+  const {
+    data: subDomainData,
+    isLoading,
+    isSuccess,
+  } = useQuery(['subdomain', router.query.id], () => postIntroPageUser({ sub_domain: router.query.id as string }));
+  if (isLoading) return <Loading />;
+  if (!isSuccess) return <ErrorPage />;
+  return <Preview data={subDomainData.data} isLoading={isLoading} isSuccess={isSuccess} />;
 }
 
-export default SubDomain;
+// export async function getStaticPaths() {
+//   const response = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
+//   const posts = response.data;
+//   const paths = posts.map((post: any) => ({ params: { id: `${post.id}` } }));
+//   return { paths, fallback: false };
+// }
+
+// export async function getStaticProps({ params }: { params: any }) {
+//   const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+//   const post = response.data;
+//   return { props: { post } };
+// }
+
+// function PostDetail({ post }: { post: any }) {
+//   return (
+//     <div>
+//       <h5>{post.id}</h5>
+//       <h4>{post.title}</h4>
+//       <p>{post.body}</p>
+//     </div>
+//   );
+// }
+
+// export default PostDetail;

@@ -152,7 +152,13 @@ export function Header({ theme }: HeaderProps) {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
         {companyInfo.logo === '' ? null : (
-          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+          <Image
+            src={companyInfo.logo}
+            className="w-[23px] h-[23px] absolute top-[9px] left-[11px]"
+            alt="companyInfo.logo"
+            width={23}
+            height={23}
+          />
         )}
         <span className="font-['LINE'] text-[12px] absolute top-[13px] left-[40px] font-[700]">
           {companyInfo.company_name}
@@ -176,7 +182,13 @@ export function Header({ theme }: HeaderProps) {
     return (
       <section id="w-15" className="h-[41px] w-full flex flex-row-reverse relative">
         {companyInfo.logo === '' ? null : (
-          <img src={companyInfo.logo} className="w-[23px] h-[23px] absolute top-[9px] left-[11px]" />
+          <Image
+            src={companyInfo.logo}
+            className="w-[23px] h-[23px] absolute top-[9px] left-[11px]"
+            width={23}
+            height={23}
+            alt="companyInfo logo"
+          />
         )}{' '}
         <span className="font-[700] text-[12px] absolute top-[13px] left-[40px]">{companyInfo.company_name}</span>
         <div className="mt-[7px] mr-[25px] text-GrayScaleNeutral-550">
@@ -213,7 +225,7 @@ export function Footer({ theme }: HeaderProps) {
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
-            <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
+            <div className="font-[300]"></div>
           </div>
         </div>
         <div className="w-[177px] ml-[10px] mt-[87px] text-GrayScaleNeutral-400 mb-[25px]">
@@ -230,7 +242,6 @@ export function Footer({ theme }: HeaderProps) {
           <div className="border w-[110px] pl-[13px] pt-[5px] text-[14px] bg-white border-GrayScaleNeutral-400 text-GrayScaleNeutral-650 ml-[130px] mt-[20px]">
             기업 상세 정보
           </div>
-          {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
           <div className="font-[300] text-[10px] flex ml-[175px] mt-[10px]">주식회사 질링스</div>
           <div className="font-[300] text-[10px] ml-[40px] flex">
             Copyright&#169;Zillinks.Co.Ltd. All Right Reserved
@@ -252,7 +263,7 @@ export function Footer({ theme }: HeaderProps) {
           </div>
           <div className="font-[500] text-[12px] flex">
             <div className="w-[70px]">Address</div>
-            <div className="font-[300]">{/* CHECKLIST - address 주소목록 가져오기 */}</div>
+            <div className="font-[300]"></div>
           </div>
         </div>
         <div className="w-[177px] ml-[10px] mt-[87px] text-white mb-[25px]">
@@ -269,7 +280,6 @@ export function Footer({ theme }: HeaderProps) {
           <div className="border w-[110px] pl-[16px] py-[5px] text-[12px] rounded-[18px] border-GrayScaleNeutral-400 ml-[135px] mt-[20px]">
             기업 상세 정보
           </div>
-          {/* CHECKLIST - 해당 링크로 이동하는 이미지 버튼 추가 */}
           <div className="font-[300] text-[10px] flex ml-[170px] mt-[10px]">주식회사 질링스</div>
           <div className="font-[300] text-[10px] flex ml-[40px]">
             Copyright&#169;Zillinks.Co.Ltd. All Right Reserved
@@ -303,9 +313,21 @@ export function ProductService({ theme }: HeaderProps) {
                 <div className="w-[196.88px] h-[259.81px] ml-[18px] mt-[16px]">
                   <span className="font-bold text-[15px]/[100%]">{items.name}</span>
                   {items.image ? (
-                    <img src={items.image} alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                    <Image
+                      src={items.image}
+                      alt="제품 서비스 아이템 이미지"
+                      className="w-[191px] h-[140px] mt-[16px]"
+                      width={191}
+                      height={140}
+                    />
                   ) : (
-                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px]" />
+                    <Image
+                      src="/productno.png"
+                      alt="제품 서비스 아이템 이미지"
+                      className="w-[191px] h-[140px] mt-[16px]"
+                      width={191}
+                      height={140}
+                    />
                   )}
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
                   <p className="font-normal text-[9.84px]/[170%] mt-[8.44px]">{items.description}</p>
@@ -347,7 +369,13 @@ export function ProductService({ theme }: HeaderProps) {
                   {items.image ? (
                     <img src={items.image} alt="" className="w-full h-[140px] mt-[16px] rounded-2xl" />
                   ) : (
-                    <img src="/productno.png" alt="" className="w-[191px] h-[140px] mt-[16px] rounded-2xl" />
+                    <Image
+                      src="/productno.png"
+                      alt=""
+                      className="w-[191px] h-[140px] mt-[16px] rounded-2xl"
+                      width={191}
+                      height={140}
+                    />
                   )}
                   <span className="font-bold text-[20px]/[100%] mt-[16.88px] flex justify-center">{items.name}</span>
                   <p className="font-bold text-[10.54px]/[100%] mt-[16.88px]">{items.title}</p>
@@ -394,9 +422,9 @@ export function TeamMember({ theme }: HeaderProps) {
             return (
               <div key={team.team_member_element_id} className="w-[169px] h-[337px] ml-[5px]">
                 {team.profile ? (
-                  <img src={team.profile} alt="" className="w-[169px] h-[198px]" />
+                  <Image src={team.profile} alt="" className="w-[169px] h-[198px]" width={169} height={198} />
                 ) : (
-                  <img src="/프로필.png" alt="" className="w-[169px] h-[198px]" />
+                  <Image src="/프로필.png" alt="" className="w-[169px] h-[198px]" width={169} height={198} />
                 )}
                 <div className="w-[169px] h-[337px] mt-[11.4px]">
                   <span className="font-bold text-[11px]/[100%]">{team.name}</span>
@@ -428,9 +456,21 @@ export function TeamMember({ theme }: HeaderProps) {
             >
               <div className="w-[100px] h-[100px] ml-[20px] mt-[16px] mb-[8px]">
                 {team.profile ? (
-                  <img src={team.profile} alt="" className="w-[100px] h-[100px] rounded-[160px] ml-[13px]" />
+                  <Image
+                    src={team.profile}
+                    alt=""
+                    className="w-[100px] h-[100px] rounded-[160px] ml-[13px]"
+                    width={100}
+                    height={100}
+                  />
                 ) : (
-                  <img src="/프로필.png" alt="" className="w-[100px] h-[100px] rounded-[160px] ml-[13px]" />
+                  <Image
+                    src="/프로필.png"
+                    alt=""
+                    className="w-[100px] h-[100px] rounded-[160px] ml-[13px]"
+                    width={100}
+                    height={100}
+                  />
                 )}
               </div>
               <div className="w-[160px] h-[337px]">
@@ -514,9 +554,21 @@ export function Press({ theme }: HeaderProps) {
             <div key={item.news_element_id} className="w-[720px] flex mb-[20px]">
               <div>
                 {item.image ? (
-                  <img src={item.image} className="w-[180px] h-[70px] rounded-[24px]" alt="" />
+                  <Image
+                    src={item.image}
+                    className="w-[180px] h-[70px] rounded-[24px]"
+                    alt=""
+                    width={180}
+                    height={70}
+                  />
                 ) : (
-                  <img src="/기사사진.png" className="w-[180px] h-[70px] rounded-[24px]" alt="" />
+                  <Image
+                    src="/기사사진.png"
+                    className="w-[180px] h-[70px] rounded-[24px]"
+                    alt=""
+                    width={180}
+                    height={70}
+                  />
                 )}
               </div>
               <div className="w-[820px] ml-[40px]">
@@ -542,10 +594,24 @@ export function Download({ theme }: HeaderProps) {
       <section id="w-07" className="h-[120px] font-['LINE'] bg-primary-500 text-white flex">
         <div className="font-[700] text-[25px] pt-[45px] pl-[100px]">DOWNLOAD</div>
         <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[260px] mt-[40px]">
-          미디어 키트 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
+          미디어 키트{' '}
+          <Image
+            src="/attach_file.svg"
+            className="w-[17px] h-[17px] translate-y-[3px]"
+            alt="미디어 키트 로고 이미지"
+            width={17}
+            height={17}
+          />
         </button>
         <button className="flex bg-white text-black py-[10px] px-[15px] drop-shadow-xl h-[45px] ml-[30px] mt-[40px]">
-          회사 소개서 <img src="/attach_file.svg" className="w-[17px] h-[17px] translate-y-[3px]" />
+          회사 소개서{' '}
+          <Image
+            src="/attach_file.svg"
+            className="w-[17px] h-[17px] translate-y-[3px]"
+            alt="회사 소개서 로고"
+            width={17}
+            height={17}
+          />
         </button>
       </section>
     );
@@ -557,10 +623,12 @@ export function Download({ theme }: HeaderProps) {
       >
         <div className="font-[700] text-[22px] pt-[45px] pl-[50px] w-[550px]">{download.description}</div>
         <button className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[40px] mt-[35px] rounded-[80px] text-[12px]">
-          미디어 키트 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+          미디어 키트{' '}
+          <Image src="/attach_file_white.svg" className="w-[17px] h-[17px]" alt="미디어 키트" width={17} height={17} />
         </button>
         <button className="flex bg-GrayScaleNeutral-800 text-white pt-[13px] pl-[22px] pr-[15px] drop-shadow-xl h-[45px] ml-[10px] mt-[35px] rounded-[80px] text-[12px]">
-          회사 소개서 <img src="/attach_file_white.svg" className="w-[17px] h-[17px]" />
+          회사 소개서{' '}
+          <Image src="/attach_file_white.svg" className="w-[17px] h-[17px]" alt="회사 소개서" width={17} height={17} />
         </button>
       </section>
     );
@@ -649,9 +717,21 @@ export function History({ theme }: HeaderProps) {
                     </div>
                     <div className="w-[85px] h-[85px] absolute right-0">
                       {item.image ? (
-                        <img src={item.image} className="w-[85px] h-[85px] mt-[10px] rounded-xl" alt="" />
+                        <Image
+                          src={item.image}
+                          className="w-[85px] h-[85px] mt-[10px] rounded-xl"
+                          alt=""
+                          width={85}
+                          height={85}
+                        />
                       ) : (
-                        <img src="/기본이미지.png" className="w-[85px] h-[85px] mt-[10px]" alt="" />
+                        <Image
+                          src="/기본이미지.png"
+                          className="w-[85px] h-[85px] mt-[10px]"
+                          alt=""
+                          width={85}
+                          height={85}
+                        />
                       )}
                     </div>
                   </div>
@@ -776,7 +856,13 @@ export function Channel({ theme }: HeaderProps) {
             if (channelValues[index * 2]) {
               return (
                 <div className="flex flex-row mr-[4px]" key={index}>
-                  <img src={items.img} className="w-[60px] h-[60px]" />
+                  <Image
+                    src={items.img}
+                    className="w-[60px] h-[60px]"
+                    alt="채널 아이템 이미지"
+                    width={60}
+                    height={60}
+                  />
                 </div>
               );
             } else {
@@ -798,7 +884,13 @@ export function Channel({ theme }: HeaderProps) {
                   className="flex flex-row mr-[4px] bg-white w-[70px] h-[70px] rounded-[14px] drop-shadow-xl mx-[20px] items-center justify-center"
                   key={index}
                 >
-                  <img src={items.img} className="w-[50px] h-[50px]" />
+                  <Image
+                    src={items.img}
+                    className="w-[50px] h-[50px]"
+                    alt="체널 아이템 이미지"
+                    width={50}
+                    height={50}
+                  />
                 </div>
               );
             } else {

@@ -7,6 +7,7 @@ import MainColor from '@/components/builder/MainColor';
 import { useMutation } from '@tanstack/react-query';
 import { updateTheme } from '@/apis/builder';
 import Router from 'next/router';
+import Image from 'next/image';
 
 function Preview() {
   // 테마 변경을 위한 함수와 객체
@@ -38,7 +39,7 @@ function Preview() {
         }
         onClick={() => setTheme({ theme_type: 'ThemeA', color: theme.color })}
       >
-        <img src="/ThemeA.png" alt="ThemeA" className="w-[252px] h-[auto] ml-[4px]" />
+        <Image src="/ThemeA.png" alt="ThemeA" className="w-[252px] h-[auto] ml-[4px]" width={252} height={100} />
       </button>
       <button
         className={
@@ -49,7 +50,7 @@ function Preview() {
         }
         onClick={() => setTheme({ theme_type: 'ThemeB', color: theme.color })}
       >
-        <img src="/ThemeB.png" alt="ThemeB" className="w-[252px] h-[auto] ml-[4px]" />
+        <Image src="/ThemeB.png" alt="ThemeB" className="w-[252px] h-[auto] ml-[4px]" width={252} height={100} />
       </button>
       <div className="mt-[48px] font-[700] text-[18px] text-GrayScalePrimary-700">기본 색상 변경</div>
       {/* 색상 선택 */}

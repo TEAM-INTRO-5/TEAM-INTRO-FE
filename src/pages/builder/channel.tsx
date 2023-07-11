@@ -10,12 +10,13 @@ import { channelList } from '@/data/channel';
 import { useMutation } from '@tanstack/react-query';
 import { updateChannel } from '@/apis/builder';
 import Router from 'next/router';
+import Image from 'next/image';
 
 function Preview() {
   const { widgets, setToggle, channel, setChannel } = useStore();
   const findWigetToggle = widgets.find((widget) => widget.widget_id === 14);
   const { mutate: updateChannelMutation } = useMutation(
-    () => updateChannel({ widget_status: findWigetToggle?.toggle, ...channel }),
+    () => updateChannel({ widget_status: findWigetToggle?.toggle as boolean, ...channel }),
     {
       onSuccess: (data) => {
         console.log('success', data);
@@ -26,15 +27,16 @@ function Preview() {
       },
     },
   );
-  console.log(channel);
   return (
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 위젯 &#8739; 채널" />
       <div className="font-[700] text-[24px] mt-[16px] flex">
-        <img
+        <Image
           src="/chat-sleep-outline.png"
           alt="header/chat-sleep-outline logo img"
           className="w-[26px] h-[26px] mr-[4px] translate-y-1"
+          width={26}
+          height={26}
         />
         채널
       </div>

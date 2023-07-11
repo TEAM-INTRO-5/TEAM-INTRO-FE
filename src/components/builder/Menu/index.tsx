@@ -4,6 +4,7 @@ import { MenuAProps, MenuBProps } from '@/interfaces/builder';
 import { ToggleSmall } from '@/components/common/toggle';
 import useStore from '@/store';
 import { widgetName } from '@/data/widgetName';
+import Image from 'next/image';
 
 // 빌더 Leftpanel 패널 메뉴
 // 테마 뱐경, 회사 정보 수정, 사이트 정보 수정
@@ -70,7 +71,13 @@ export function MenuB({ routerName, buttonId }: MenuBProps) {
       {/* 순서 변경 토글이 true이며 사용하는 위젯인 경우 순서 변경 핸들러 활성화 */}
       {isChangeOederToggle && widget?.toggle ? (
         <div>
-          <img src="/handler.png" className="w-[24px] h-[24px] absolute top-[11px] right-[16px]" alt="hanlder-img" />
+          <Image
+            src="/handler.png"
+            className="w-[24px] h-[24px] absolute top-[11px] right-[16px]"
+            alt="hanlder-img"
+            width={24}
+            height={24}
+          />
         </div>
       ) : (
         <></>

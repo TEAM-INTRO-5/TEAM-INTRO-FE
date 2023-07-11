@@ -9,6 +9,7 @@ import { headerName } from '@/data/headerName';
 import { useMutation } from '@tanstack/react-query';
 import { updateHeaderAndFooter } from '@/apis/builder';
 import Router from 'next/router';
+import Image from 'next/image';
 
 function Preview() {
   const { header_and_footer_status_list, setHeaderAndFooter } = useStore();
@@ -29,10 +30,12 @@ function Preview() {
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 위젯 &#8739; 헤더/푸터" />
       <div className="font-[700] text-[24px] mt-[16px] flex">
-        <img
+        <Image
           src="/headerfooter.png"
           alt="header/footer logo img"
           className="w-[26px] h-[26px] mr-[4px] translate-y-1"
+          width={26}
+          height={26}
         />
         헤더/푸터
       </div>
@@ -59,9 +62,12 @@ function Preview() {
                 }}
               >
                 <span className="translate-y-[4px]">{headerName[index]}</span>
-                <img
+                <Image
                   src={toggle ? '/visibility.png' : '/visibility_off.png'}
                   className="w-[16px] h-[16px] translate-y-[6px] ml-[4px]"
+                  width={16}
+                  height={16}
+                  alt="toggle button"
                 />
               </button>
             );

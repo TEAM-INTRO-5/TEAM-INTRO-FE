@@ -8,12 +8,13 @@ import useStore from '@/store';
 import { useMutation } from '@tanstack/react-query';
 import { updateMissionVision } from '@/apis/builder';
 import Router from 'next/router';
+import Image from 'next/image';
 
 function Preview() {
   const { widgets, setToggle, missionVision, setMissionDetail, setVisionDetail, setMissionVision } = useStore();
   const findWigetToggle = widgets.find((widget) => widget.widget_id === 1);
   const { mutate: updateMissionVisionMutation } = useMutation(
-    () => updateMissionVision({ widget_status: findWigetToggle?.toggle, ...missionVision }),
+    () => updateMissionVision({ widget_status: findWigetToggle?.toggle as boolean, ...missionVision }),
     {
       onSuccess: (data) => {
         console.log('success', data);
@@ -28,7 +29,13 @@ function Preview() {
     <div className="ml-[28px]">
       <BeforeButtonSmall pageName="빌더 &#8739; 위젯 &#8739; 미션/비전" />
       <div className="font-[700] text-[24px] mt-[16px] flex">
-        <img src="/mission.png" alt="header/mission logo img" className="w-[26px] h-[26px] mr-[4px] translate-y-1" />
+        <Image
+          src="/mission.png"
+          alt="header/mission logo img"
+          className="w-[26px] h-[26px] mr-[4px] translate-y-1"
+          width={26}
+          height={26}
+        />
         미션/비젼
       </div>
       <div className="w-[260px] font-[500] text-[16px] mt-[16px] text-GrayScalePrimary-700">

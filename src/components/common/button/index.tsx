@@ -1,6 +1,7 @@
 import { BeforeButtonProps, PrimaryButtonProps } from '@/interfaces/button';
 import useStore from '@/store';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 // 이전으로 되돌아가는 버튼
 // leftpanel
@@ -29,7 +30,7 @@ export function BeforeButtonSmall({ pageName }: BeforeButtonProps) {
       }}
     >
       <div className="w-[24px] h-[24px] bg-GrayScalePrimary-100 rounded-full pt-[5px]">
-        <img src="/east.png" alt="east" className="w-[12px] h-[auto] translate-x-[5px]" />
+        <Image src="/east.png" alt="east" className="w-[12px] h-[auto] translate-x-[5px]" width={12} height={12} />
       </div>
       <p className="text-GrayScalePrimary-500 font-bold text-[14px] ml-[16px] translate-y-[2px]">{pageName}</p>
     </button>
@@ -50,7 +51,7 @@ export function BeforeButtonLarge({ pageName, classname }: BeforeButtonProps) {
         backPage();
       }}
     >
-      <img src="/arrow_back.png" alt="arrow_back" className="w-[12px] h-[auto]" />
+      <Image src="/arrow_back.png" alt="arrow_back" className="w-[12px] h-[auto]" width={12} height={12} />
       <p className="font-[500] text-[18px] ml-[8px] translate-y-[-2px]">{pageName}</p>
     </button>
   );

@@ -1,5 +1,5 @@
-import LoginButton from "@/components/button";
-
+import { axiosInstance } from '@/apis/axios';
+import LoginButton from '@/components/button';
 
 export default function Home() {
   return (
