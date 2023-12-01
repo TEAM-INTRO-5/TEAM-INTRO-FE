@@ -24,10 +24,12 @@ Intro는 더 나아가, 사용자가 원하는 서브도메인을 입력하면 �
 
 - 작업 기간 : 23.05.20 ~ 23.07.10
 - 데모사이트 : [Intro 회사 소개 페이지 제작하기](https://www.intro-fe.shop/login)
-- 회사 소개 페이지 : [견본 회사 소개 페이지](https://arigo.intro-fe.shop/)
+- 회사 소개 페이지 : [견본 회사 소개 페이지](https://arigo.intro-fe.shop/) 
 - 테스트용 계정
   - ID: test4 / PW: 1234
   - ID: test2 / PW: 1234
+ 
+
 
 ### 🛠️ 사용 기술 스택
 
